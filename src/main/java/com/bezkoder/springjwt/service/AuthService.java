@@ -82,7 +82,6 @@ public class AuthService {
                 }
             });
         }
-
         user.setRoles(roles);
         userRepository.save(user);
         return "ok";

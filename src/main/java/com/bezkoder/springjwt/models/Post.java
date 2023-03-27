@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.models;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 
 @Entity
@@ -12,27 +13,29 @@ import java.time.Instant;
 @Table(name = "post")
 @Getter
 @Setter
-@Builder
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable=false, insertable = false)
     private Long id;
 
+    @NotBlank
     private String name;
+    @NotBlank
     private String url;
 
+    @NonNull
     @Lob
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     private Instant created;
     private Integer voteCount = 0;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "sub_reddit_id", referencedColumnName = "id")
     private SubReddit subReddit;
 
 }
