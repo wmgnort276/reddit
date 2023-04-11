@@ -23,7 +23,7 @@ public class SubReddit {
     private String description;
     private Instant created;
     private Instant updated;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

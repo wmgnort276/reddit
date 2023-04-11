@@ -26,7 +26,7 @@ public class SubRedditController {
 
     @GetMapping
     @PreAuthorize("hasRole('USER') or hasRole('MODERATE') or hasRole('ADMIN')")
-    public List<SubRedditResponse> getAll(){
-        return subRedditService.getAll();
+    public ResponseEntity<?> getAll(){
+        return  ResponseEntity.ok(new MessageResponse("Success", 200, subRedditService.getAll()));  // subRedditService.getAll();
     }
 }

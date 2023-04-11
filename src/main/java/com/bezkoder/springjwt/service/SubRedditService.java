@@ -33,12 +33,11 @@ public class SubRedditService extends BaseService {
 
     public List<SubRedditResponse> getAll(){
         List<SubReddit> subRedditList = subRedditRepository.findAll();
-        List<Long> userIds = subRedditList.stream()
-                .map(item -> item.getUser().getId())
-                .collect(Collectors.toList());
-
-        List<SubRedditResponse> subRedditResponseList = mapper.mapAsList(subRedditRepository.findAll(), SubRedditResponse.class);
-
+        List<SubRedditResponse> subRedditResponseList = mapper.mapAsList(subRedditList, SubRedditResponse.class);
         return subRedditResponseList;
+    }
+
+    public SubRedditResponse getSubReddit(Long id){
+        return null;
     }
 }
